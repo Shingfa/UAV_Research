@@ -12,7 +12,7 @@ async def run():
 
     await drone.action.arm()
 
-    # LƯỢT ĐI: Cất cánh tại A, xoay mũi sang Đông (90 độ)
+    # LƯỢT ĐI: Cất cánh tại A, xoay mũi sang Đông
     await drone.offboard.set_position_ned(PositionNedYaw(0.0, 0.0, -5.0, 90.0))
 
     try:
@@ -34,12 +34,10 @@ async def run():
     await drone.offboard.stop()
     await drone.action.land()
 
-    # Chờ 10 giây để UAV tiếp đất hoàn toàn trước khi cất cánh lại
     await asyncio.sleep(8)
 
-    # ==========================================
-    # BẮT ĐẦU LƯỢT VỀ (TỪ B VỀ A)
-    # ==========================================
+
+    # (TỪ B VỀ A)
 
     print("Từ B trở về A, mục đích là để test cho lần tiếp theo")
     await drone.action.arm()
@@ -53,7 +51,7 @@ async def run():
     await asyncio.sleep(8)
 
     print("Đang bay về A")
-    # Trở về tọa độ gốc (Y=0m), mũi vẫn hướng Tây
+    # Trở về tọa độ gốc (Y=0m),
     await drone.offboard.set_position_ned(PositionNedYaw(0.0, 0.0, -5.0, 270.0))
     await asyncio.sleep(8)
 
